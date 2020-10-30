@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+
+.hamburger-button {
+  background-color: #fff;
+  border: none;
+  outline: 0;
+  box-shadow: none;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1002;
+  vertical-align: bottom;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+}
+.hamburger-button svg {
+  height: 25px; /* autoではなく同じ数字で */
+  width: 25px; /* autoではなく同じ数字で */
+  position: relative;
+  top: 1px;
+  fill: #000;
+}
+.hamburger-nav {
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1001;
+}
+#hamburger-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,.5);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1000;
+}
