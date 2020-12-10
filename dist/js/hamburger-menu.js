@@ -20,8 +20,8 @@ $(function(){
   };
   const $nav = $('.hamburger-nav');
   const $button = $('.hamburger-button');
-  const navHeight = $nav.height();
-  const navWidth = $nav.width();
+  const navHeight = $nav.outerHeight();
+  const navWidth = $nav.outerWidth();
   const weight = options.weight[0].toUpperCase() + options.weight.substring(1);
   const barsIcon = icons['bars' + weight];
   const timesIcon = icons['times' + options.weight[0].toUpperCase() + options.weight.substring(1)];
@@ -65,11 +65,13 @@ $(function(){
       if (options.slide === 'top' || options.slide === 'bottom') {
         $nav.css(options.slide, - navHeight);
       } else {
+        $nav.css('top', 0); // 要検討
         $nav.css(options.slide, - navWidth);
       }
     }
     $button.html(barsIcon);
     $overlay.css('opacity', 0);
+    $button.removeClass('close');
   }
   /* Open */
   function open() {
@@ -80,5 +82,6 @@ $(function(){
     }
     $button.html(timesIcon);
     $overlay.css('opacity', 1);
+    $button.addClass('close');
   }
 });
