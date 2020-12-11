@@ -5,7 +5,7 @@ $(function(){
   /* オプション設定 */
   const options = {
     slide: 'top', /* スライド方向（none, top, bottom, left, right） */
-    duration: 0.3, /* 表示アニメーション速度（秒） */
+    duration: 300, /* 表示アニメーション速度（ms） */
     weight: 'regular', /* アイコン太さ（regular, light, solid） */
     dark: true, /* 画面の暗転（true, false） */
   };
@@ -20,8 +20,8 @@ $(function(){
   };
   const $nav = $('.hamburger-nav');
   const $button = $('.hamburger-button');
-  const navHeight = $nav.outerHeight();
-  const navWidth = $nav.outerWidth();
+  let navHeight = $nav.outerHeight();
+  let navWidth = $nav.outerWidth();
   const weight = options.weight[0].toUpperCase() + options.weight.substring(1);
   const barsIcon = icons['bars' + weight];
   const timesIcon = icons['times' + options.weight[0].toUpperCase() + options.weight.substring(1)];
@@ -29,7 +29,7 @@ $(function(){
   /* overlay（z-index対策） */
   $nav.parent().append('<div id="hamburger-overlay"></div>');
   const $overlay = $('#hamburger-overlay');
-  $overlay.css('transition-duration', options.duration + 's');
+  $overlay.css('transition-duration', (options.duration / 1000) + 's');
   if (! options.dark) {
     $overlay.css('background-color', 'transparent');
   }
@@ -49,13 +49,13 @@ $(function(){
   
   /* Prepare */
   function prepare() {
-    if ($button.css('display') !== 'none') {
-      close();
-      setTimeout(() => {
-        $nav.css('display', 'block');
-        $nav.css('transition-duration', options.duration + 's');
-      }, 0); /* 表示される不具合対策 */
-    }
+    navHeight = $nav.outerHeight(); /* responsive対応 */
+    navWidth = $nav.outerWidth(); /* responsive対応 */
+    close();
+    setTimeout(() => {
+      $nav.css('display', 'block');
+      $nav.css('transition-duration', (options.duration / 1000) + 's');
+    }, 0); /* 表示される不具合対策 */
   }
   /* Close */
   function close() {
