@@ -36,6 +36,9 @@ $(function(){
   
   /* メニュー収納 */
   prepare();
+  setTimeout(() => {
+    prepare();
+  }, 0)
   $(window).on('resize', function() {
     prepare();
   });
@@ -63,6 +66,7 @@ $(function(){
       $nav.css('opacity', 0);
     } else {
       if (options.slide === 'top' || options.slide === 'bottom') {
+        $nav.css('left', 0); // 要検討
         $nav.css(options.slide, - navHeight);
       } else {
         $nav.css('top', 0); // 要検討
