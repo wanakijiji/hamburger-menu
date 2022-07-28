@@ -81,6 +81,7 @@ $(function(){
   function open() {
     if (options.slide === 'none') {
       $nav.css('opacity', 1);
+      $nav.css('top', 0);
     } else {
       $nav.css(options.slide, 0);
     }
